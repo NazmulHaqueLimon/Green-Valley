@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <style name="Base.Theme.GreenValley" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+
+        <item name="colorPrimary">@color/green_500</item>
+        <item name="colorOnPrimary">@color/owl_yellow_200</item>
+        <item name="colorPrimaryDark">@color/green_700</item>
+        <item name="colorOnSurface">@color/green_700</item>
+        <item name="colorAccent">@color/owl_blue_700</item>
+        <item name="colorSurface">@color/white</item>
+        <item name="colorSecondary">@color/owl_blue_200</item>
+        <item name="android:colorBackground">@color/green_500</item>
+    </style>
+
+
+
+    <style name="Theme.GreenValley" parent="Base.Theme.GreenValley"/>
+
+    <style name="Theme.GreenValley.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+
+    <style name="Theme.GreenValley.AppBarOverlay"
+        parent="ThemeOverlay.MaterialComponents.Dark.ActionBar"/>
+
+
+    <style name="TextAppearance.GreenValley.Toolbar.Text"
+        parent="TextAppearance.MaterialComponents.Headline5" >
+        <item name="android:textColor">?attr/colorOnSurface</item>
+    </style>
+
+</resources>

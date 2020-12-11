@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Green Valley</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="my_garden_title">My Garden</string>
+    <string name="gardening_title">Gardening101</string>
+    <string name="filter_items_title">Explore</string>
+    <string name="default_filter">default</string>
+    <string name="choose_items">Choose Items To Explore</string>
+
+</resources>

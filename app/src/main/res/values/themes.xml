@@ -1,0 +1,44 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+
+    <style name="GreenValley" parent="Theme.GreenValley"/>
+
+
+    <style name="GreenValley.Yellow">
+        <item name="colorPrimary">@color/owl_yellow_500</item>
+        <item name="colorPrimaryVariant">@color/owl_yellow_400</item>
+        <item name="colorSecondary">@color/owl_blue_700</item>
+        <item name="colorSecondaryVariant">@color/owl_blue_800</item>
+    </style>
+    <style name="GreenValley.Blue">
+        <item name="colorPrimary">@color/owl_blue_700</item>
+        <item name="colorPrimaryVariant">@color/owl_blue_800</item>
+        <item name="colorSecondary">@color/owl_yellow_500</item>
+        <item name="colorSecondaryVariant">@color/owl_yellow_400</item>
+    </style>
+    <style name="ThemeOverlay.GreenValley.Blue" parent="@style/ThemeOverlay.MaterialComponents.Light">
+        <item name="colorPrimary">@color/owl_blue_700</item>
+        <item name="colorPrimaryVariant">@color/owl_blue_800</item>
+        <item name="colorSecondary">@color/owl_yellow_500</item>
+        <item name="colorSecondaryVariant">@color/owl_yellow_400</item>
+        <item name="colorOnPrimary">#fff</item>
+    </style>
+
+    <style name="ThemeOverlay.GreenValley.Blue.Dark" parent="@style/ThemeOverlay.MaterialComponents.Dark">
+        <item name="colorPrimary">@color/owl_blue_700</item>
+        <item name="colorPrimaryVariant">@color/owl_blue_800</item>
+        <item name="colorSecondary">@color/owl_yellow_500</item>
+        <item name="colorSecondaryVariant">@color/owl_yellow_400</item>
+        <item name="colorOnPrimary">#fff</item>
+    </style>
+
+    <style name="GreenValley.Pink">
+        <item name="colorPrimary">@color/owl_pink_500</item>
+        <item name="colorSecondary">@color/owl_pink_500</item>
+        <item name="colorPrimaryVariant">@color/owl_pink_600</item>
+        <item name="colorOnPrimary">#000</item>
+    </style>
+    <style name="ThemeOverlay.GreenValley.TransitionShapeAppearance.Small" parent="">
+        <item name="transitionShapeAppearance">@style/ShapeAppearance.GreenValley.SmallComponent</item>
+    </style>
+</resources>
