@@ -1,6 +1,6 @@
 package com.example.greenvalley.ui.filterItems
 
-import android.graphics.drawable.Drawable
+
 import androidx.recyclerview.widget.DiffUtil
 import com.example.greenvalley.R
 

@@ -7,5 +7,6 @@
     <string name="filter_items_title">Explore</string>
     <string name="default_filter">default</string>
     <string name="choose_items">Choose Items To Explore</string>
+    <string name="a11y_plant_item_image">plant item image</string>
 
 </resources>
