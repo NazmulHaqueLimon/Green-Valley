@@ -1,4 +1,4 @@
-package com.example.greenvalley.ui.listItems
+package com.example.greenvalley.ui
 
 import android.annotation.SuppressLint
 import android.content.Context
