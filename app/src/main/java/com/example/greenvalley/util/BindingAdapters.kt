@@ -140,7 +140,8 @@ fun View.applySystemWindowInsetsPadding(
 
     doOnApplyWindowInsets { view, insets, padding, _ ->
        // val systemBars = insets.getInsets(insets.Type.systemBars())
-        val systemBars =insets.getInsets(WindowInsetsCompat.Type.statusBars())
+        val systemBars=insets.getInsets(WindowInsetsCompat.Type.statusBars())
+        //val systemBars =insets.getInsets(WindowInsetsCompat.Type.statusBars())
         val left = if (applyLeft) systemBars.left else 0
         val top = if (applyTop) systemBars.top else 0
         val right = if (applyRight) systemBars.right else 0

@@ -1,11 +1,13 @@
 package com.example.greenvalley.ui.filterItems
 
+import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.widget.ImageView
 import androidx.annotation.ColorInt
 import androidx.annotation.Px
 import com.bumptech.glide.request.target.ImageViewTarget
+import com.example.greenvalley.R
 
 /**
  * A Glide [com.bumptech.glide.request.target.Target] which wraps a loaded [Bitmap] in a

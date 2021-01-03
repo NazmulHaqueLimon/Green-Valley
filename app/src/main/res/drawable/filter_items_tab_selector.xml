@@ -3,4 +3,5 @@
 
     <item android:drawable="@drawable/icon_plant_in_hand_dark" android:state_selected="true"/>
     <item android:drawable="@drawable/icon_plant_in_hand_white"/>
+    <item ></item>
 </selector>

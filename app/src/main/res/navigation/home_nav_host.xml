@@ -8,7 +8,8 @@
     <fragment
         android:id="@+id/homeViewPagerFragment"
         android:name="com.example.greenvalley.ui.HomeViewPagerFragment"
-        android:label="HomeViewPagerFragment" >
+        android:label="HomeViewPagerFragment"
+        tools:layout="@layout/fragment_home_view_pager">
         <action
             android:id="@+id/action_homeViewPagerFragment_to_listItemFragment"
             app:destination="@id/listItemFragment" />
@@ -16,5 +17,6 @@
     <fragment
         android:id="@+id/listItemFragment"
         android:name="com.example.greenvalley.ui.listItems.ListItemFragment"
-        android:label="ListItemFragment" />
+        android:label="ListItemFragment"
+        tools:layout="@layout/fragment_list_item"/>
 </navigation>

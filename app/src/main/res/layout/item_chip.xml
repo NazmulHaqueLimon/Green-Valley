@@ -5,7 +5,8 @@
     tools:targetApi="o">
 
     <data>
-        <variable name="filterItem" type="com.example.greenvalley.ui.filterItems.FilterItem"/>
+        <variable name="filterItem"
+            type="com.example.greenvalley.ui.filterItems.FilterItem"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -38,7 +39,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/chip_item_selector" />
+            app:srcCompat="@drawable/flowers" />
 
         <TextView
             android:id="@+id/item_name"

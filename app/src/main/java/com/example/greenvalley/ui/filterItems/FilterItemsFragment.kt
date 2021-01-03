@@ -1,5 +1,6 @@
 package com.example.greenvalley.ui.filterItems
 
+import android.content.Context
 import android.os.Bundle
 import android.util.DisplayMetrics
 import androidx.fragment.app.Fragment
@@ -9,6 +10,7 @@ import android.view.ViewGroup
 import androidx.annotation.Px
 import androidx.core.view.forEach
 import androidx.dynamicanimation.animation.SpringAnimation
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearSmoothScroller
 import androidx.recyclerview.widget.RecyclerView
@@ -16,34 +18,54 @@ import com.example.greenvalley.R
 import com.example.greenvalley.databinding.FragmentFilterHomeBinding
 
 import com.example.greenvalley.util.spring
+import com.example.greenvalley.viewModels.ItemListViewModel
 
 
 class FilterItemsFragment : Fragment() {
+
+    private val viewModel:ItemListViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
-        val binding = FragmentFilterHomeBinding
+        /**val binding=FragmentFilterHomeBinding.inflate(inflater,container,false)
+        context ?:return binding.root
+
+        val adapter =ItemsAdapter()
+        binding.itemGrid.adapter=adapter
+        adapter.submitList(filterItems.reversed())*/
+
+
+
+       val binding = FragmentFilterHomeBinding
             .inflate(inflater,container,false).apply {
-                fab.setOnClickListener{
-                    findNavController().navigate(R.id.action_homeViewPagerFragment_to_listItemFragment)
-                }
-                itemGrid.apply {
-                    adapter=ItemsAdapter(context).apply {
-                        submitList(filterItems.reversed())
-                    }
+
+
+                   val adapter=ItemsAdapter(context)
+
+                   itemGrid.apply {
+                       adapter.submitList(filterItems.reversed())
+
                     smoothScrollToPositionWithSpeed(filterItems.size)
                     
                     addOnScrollListener(
                             OscillatingScrollListener(resources.getDimensionPixelSize(R.dimen.grid_2))
-                            
+
                     )
+
+                }
+                fab.setOnClickListener{
+                   // val selectedItems=adapter.getSelectedItemList()
+                    adapter.getSelectedItemList()?.let { it1 -> viewModel.setFilters(it1) }
+                    adapter.getSelectedItemList()
+
+                    findNavController().navigate(R.id.action_homeViewPagerFragment_to_listItemFragment)
                 }
 
-            }
 
+            }
 
         return binding.root
 
