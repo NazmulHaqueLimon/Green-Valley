@@ -25,7 +25,7 @@ class ListItemFragment : Fragment() {
         context ?: return binding.root
 
         val adapter=ItemListAdapter()
-        binding.plantList.adapter=adapter
+        binding.itemRecycler.adapter=adapter
         updateUi(adapter)
 
         setHasOptionsMenu(true)

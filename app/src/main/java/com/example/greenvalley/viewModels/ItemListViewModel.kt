@@ -8,6 +8,7 @@ import com.example.greenvalley.ui.filterItems.FilterItem
 import com.example.greenvalley.ui.listItems.Item
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -28,7 +29,6 @@ import javax.inject.Inject
          }
      }
 
-     //val items :LiveData<List<Item>>= itemListRepository.
 
      fun setFilters(filterItems :List<String>){
          filters.value=filterItems
