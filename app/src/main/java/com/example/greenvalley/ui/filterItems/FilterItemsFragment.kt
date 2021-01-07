@@ -59,7 +59,7 @@ class FilterItemsFragment : Fragment() {
                 fab.setOnClickListener{
                    // val selectedItems=adapter.getSelectedItemList()
                     adapter.getSelectedItemList()?.let { it1 -> viewModel.setFilters(it1) }
-                    adapter.getSelectedItemList()
+                   // adapter.getSelectedItemList()
 
                     findNavController().navigate(R.id.action_homeViewPagerFragment_to_listItemFragment)
                 }

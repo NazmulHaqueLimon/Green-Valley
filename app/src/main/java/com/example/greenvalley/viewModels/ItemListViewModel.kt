@@ -2,21 +2,40 @@
 
 import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.SavedStateHandle
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.*
 import com.example.greenvalley.dataRepository.ItemListRepository
+import com.example.greenvalley.ui.filterItems.FilterItem
 import com.example.greenvalley.ui.listItems.Item
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
  class ItemListViewModel @ViewModelInject constructor (
-    itemListRepository :ItemListRepository,
-    @Assisted private val savedStateHandle: SavedStateHandle
+      itemListRepository :ItemListRepository,
+     @Assisted private val savedStateHandle: SavedStateHandle
     ) :ViewModel(){
 
-     private val  filters: MutableLiveData<List<String>>?=null
-      fun setFilters(items:List<String>){
-        // filters.
+     //private val  filters: MutableStateFlow<List<String>>=MutableStateFlow()
+     private val filters: MutableStateFlow<List<String>?> = MutableStateFlow(
+             savedStateHandle.get<List<String>>(FILTERS_SAVED_STATE_KEY)
+     )
+     init {
+         viewModelScope.launch {
+             filters.collect { newList ->
+                 savedStateHandle.set(FILTERS_SAVED_STATE_KEY,newList)
+             }
+         }
+     }
+
+     //val items :LiveData<List<Item>>= itemListRepository.
+
+     fun setFilters(filterItems :List<String>){
+         filters.value=filterItems
+     }
+
+     companion object {
+         private const val FILTERS_SAVED_STATE_KEY = "filters_key"
      }
 
 
