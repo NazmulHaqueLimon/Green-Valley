@@ -46,7 +46,8 @@ class FilterItemsFragment : Fragment() {
              )
          }
          binding.fab.setOnClickListener {
-             adapter.getSelectedItemList()?.let { it1 -> viewModel.setFilters(it1) }
+             //adapter.currentList//returns mutable list of filterItems
+             adapter.getSelectedItems().let { it1 -> viewModel.setFilters(it1) }
              findNavController().navigate(R.id.action_homeViewPagerFragment_to_listItemFragment)
          }
 
@@ -93,7 +94,7 @@ class OscillatingScrollListener(
             // Alter the pivot point based on scroll direction to make motion look more natural
             it.pivotX = it.width / 2f + clampedDx / 3f
             it.pivotY = it.height / 3f
-            //it.spring(SpringAnimation.ROTATION).animateToFinalPosition(rotation)
+            it.spring(SpringAnimation.ROTATION).animateToFinalPosition(rotation)
         }
     }
 

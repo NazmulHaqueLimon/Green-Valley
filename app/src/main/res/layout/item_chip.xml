@@ -5,7 +5,7 @@
     tools:targetApi="o">
 
     <data>
-        <variable name="filterItem"
+        <variable name="filterItems"
             type="com.example.greenvalley.ui.filterItems.FilterItem"/>
     </data>
 
@@ -51,7 +51,7 @@
             android:paddingTop="@dimen/grid_2"
             android:paddingBottom="@dimen/grid_1"
             android:textAppearance="?attr/textAppearanceBody1"
-            android:text="@{filterItem.name}"
+            android:text="@{filterItems.name}"
             tools:text="sample text"/>
 
         <ImageView
@@ -73,7 +73,7 @@
             app:layout_constraintTop_toBottomOf="@id/item_name"
             android:layout_marginStart="@dimen/grid_1"
             android:textAppearance="?attr/textAppearanceCaption"
-            android:text="@{String.valueOf(filterItem.total)}"
+            android:text="@{String.valueOf(filterItems.total)}"
             tools:text="total"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

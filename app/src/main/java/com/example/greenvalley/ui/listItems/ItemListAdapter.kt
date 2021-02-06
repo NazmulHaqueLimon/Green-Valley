@@ -1,17 +1,16 @@
 package com.example.greenvalley.ui.listItems
 
-import android.content.Context
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.greenvalley.dataRepository.QueryItem
 import com.example.greenvalley.databinding.ItemListBinding
-import javax.inject.Inject
 
-class ItemListAdapter : ListAdapter<Item, RecyclerView.ViewHolder>(PlantDiffCallback()){
+class ItemListAdapter : ListAdapter<QueryItem<DisplayItem>, RecyclerView.ViewHolder>(PlantDiffCallback()){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return ListItemViewHolder(
@@ -24,8 +23,8 @@ class ItemListAdapter : ListAdapter<Item, RecyclerView.ViewHolder>(PlantDiffCall
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        val item =getItem(position)
-        (holder as ListItemViewHolder).bind(item)
+        val qItem =getItem(position).item
+        (holder as ListItemViewHolder).bind(qItem)
     }
 
 
@@ -34,8 +33,8 @@ class ItemListAdapter : ListAdapter<Item, RecyclerView.ViewHolder>(PlantDiffCall
     ) : RecyclerView.ViewHolder(binding.root) {
         init {
             binding.setClickListener {
-                binding.item?.let { item ->
-                    navigateToPlant(item, it)
+                binding.items?.let { item ->
+                    //navigateToPlant(item, it)
                 }
             }
         }
@@ -51,22 +50,24 @@ class ItemListAdapter : ListAdapter<Item, RecyclerView.ViewHolder>(PlantDiffCall
             view.findNavController().navigate(direction) */
         }
 
-        fun bind(plant: Item) {
+        fun bind(qItem: DisplayItem) {
             binding.apply {
-                item = plant
+                items =qItem
                 executePendingBindings()
             }
         }
     }
 }
 
-private class PlantDiffCallback : DiffUtil.ItemCallback<Item>() {
+private class PlantDiffCallback : DiffUtil.ItemCallback<QueryItem<DisplayItem>>() {
 
-    override fun areItemsTheSame(oldItem: Item, newItem: Item): Boolean {
-        return oldItem.item_id == newItem.item_id
+
+    override fun areItemsTheSame(oldItem: QueryItem<DisplayItem>, newItem: QueryItem<DisplayItem>): Boolean {
+        return oldItem.id == newItem.id
     }
 
-    override fun areContentsTheSame(oldItem: Item, newItem: Item): Boolean {
+    @SuppressLint("DiffUtilEquals")
+    override fun areContentsTheSame(oldItem: QueryItem<DisplayItem>, newItem: QueryItem<DisplayItem>): Boolean {
         return oldItem == newItem
     }
 }
