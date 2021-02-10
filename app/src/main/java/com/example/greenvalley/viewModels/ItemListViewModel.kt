@@ -1,4 +1,4 @@
- package com.example.greenvalley.viewModels
+package com.example.greenvalley.viewModels
 
 import androidx.lifecycle.*
 import com.example.greenvalley.dataRepository.*
@@ -34,7 +34,7 @@ import javax.inject.Inject
 
        suspend fun loadFilteredItems(filterItems: List<String>){
         //: LiveData<filteredDisplayItemResults>?
-           val filteredItems: LiveData<filteredItemsQueryResultOrException>? = filterItems?.let {
+           val filteredItems: LiveData<filteredItemsQueryResultOrException> = filterItems.let {
                itemListRepository.getFilteredItems(it)
            }
 
