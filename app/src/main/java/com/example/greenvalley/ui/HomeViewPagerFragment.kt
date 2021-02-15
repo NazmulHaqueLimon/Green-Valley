@@ -9,8 +9,9 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.greenvalley.R
 import com.example.greenvalley.databinding.FragmentHomeViewPagerBinding
 import com.google.android.material.tabs.TabLayoutMediator
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class HomeViewPagerFragment : Fragment() {
 
 

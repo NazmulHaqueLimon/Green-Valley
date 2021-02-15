@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.example.greenvalley.R
@@ -17,8 +18,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class ListItemFragment : Fragment() {
 
-    private val viewModel: ItemListViewModel by viewModels()
-
+    private val viewModel: ItemListViewModel by activityViewModels()
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
@@ -30,8 +30,8 @@ class ListItemFragment : Fragment() {
 
         val adapter = ItemListAdapter()
         binding.itemRecycler.adapter = adapter
-        //updateUi(adapter)
 
+        //typealias QueryResultsOrException<T, E> = DataOrException<List<QueryItem<T>>, E>
         //typealias filteredDisplayItemResults=QueryResultsOrException<DisplayItem,Exception>
         val dataObserver =Observer<filteredDisplayItemResults>{
             if (it!=null){
@@ -45,7 +45,7 @@ class ListItemFragment : Fragment() {
                 }
             }
         }
-        viewModel.items?.observe(viewLifecycleOwner,dataObserver)
+        //viewModel.items.observe(viewLifecycleOwner,dataObserver)
 
         setHasOptionsMenu(true)
 

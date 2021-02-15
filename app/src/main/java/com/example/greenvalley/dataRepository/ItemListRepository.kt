@@ -1,11 +1,16 @@
 package com.example.greenvalley.dataRepository
 
+import android.content.ContentValues.TAG
+import android.service.controls.ControlsProviderService
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import com.example.greenvalley.extendedLiveData.FirestoreQueryLiveData
 import com.example.greenvalley.ui.listItems.Item
 import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -18,19 +23,19 @@ class ItemListRepository @Inject constructor()  {
     private val deserializer =DocSnapshotDeserializer()
 
     suspend fun getFilteredItems(list: List<String>): LiveData<filteredItemsQueryResultOrException> {
-        val query =documentRef.whereArrayContainsAny("category",list)
-        val queryLiveData =FirestoreQueryLiveData(query)
-        //returns dataOrException of list of Documents
-        return Transformations.map(queryLiveData,DeserializeDocSnapshots(deserializer))
+        return withContext(Dispatchers.IO){
+            Log.d(TAG,"items list is passing.through repository")
+            val query =documentRef.whereArrayContainsAny("category",list)
+            val queryLiveData =FirestoreQueryLiveData(query)
+            //returns dataOrException of list of Documents
+            Transformations.map(queryLiveData,DeserializeDocSnapshots(deserializer))
+
+        }
     }
-}
-/**
- * interface BaseRepository {
-fun getFilteredItems(list: List<String>):LiveData<filteredItemsQueryResultOrException>
 
 }
- * The results of a database query (a List of QueryItems), or an Exception.
- */
+
+
 typealias QueryResultsOrException<T, E> = DataOrException<List<QueryItem<T>>, E>
 typealias filteredItemsQueryResultOrException =QueryResultsOrException<Item,Exception>
 
@@ -43,7 +48,11 @@ interface QueryItem<T> {
     val id: String
 }
 
+/**
+ * interface BaseRepository {
+fun getFilteredItems(list: List<String>):LiveData<filteredItemsQueryResultOrException>
 
+}*/
 //extending the queryItem interface
 data class PlantQueryItem(
         private val plantItem : Item,

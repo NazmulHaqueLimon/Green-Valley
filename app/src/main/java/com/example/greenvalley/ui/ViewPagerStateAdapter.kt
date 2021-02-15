@@ -12,9 +12,6 @@ const val FILTER_ITEMS_PAGE_INDEX = 1
 const val GARDENING_PAGE_INDEX =2
 
 class ViewPagerStateAdapter (fragment: Fragment):FragmentStateAdapter(fragment){
-
-
-
     /**
      * Mapping of the ViewPager page indexes to their respective Fragments
      */

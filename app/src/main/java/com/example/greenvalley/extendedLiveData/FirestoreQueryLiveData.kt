@@ -10,7 +10,7 @@ class FirestoreQueryLiveData(
         private val query: Query
         ): LiveData<DocumentSnapShotsOrException>(), EventListener<QuerySnapshot> {
 
-    private val fireStore = FirebaseFirestore.getInstance()
+   // private val fireStore = FirebaseFirestore.getInstance()
     private var listenerRegistration: ListenerRegistration?=null
 
     override fun onActive() {
@@ -25,7 +25,6 @@ class FirestoreQueryLiveData(
     }
     override fun onEvent(value: QuerySnapshot?, error: FirebaseFirestoreException?) {
         val documents =value?.documents
-       // postValue(documents?.let { DocumentSnapShotOrException(it,error) })
         postValue(documents?.let { DocumentSnapShotsOrException(it, error) })
 
 

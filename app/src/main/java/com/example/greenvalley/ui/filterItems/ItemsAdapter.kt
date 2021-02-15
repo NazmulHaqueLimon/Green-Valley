@@ -32,7 +32,7 @@ class ItemsAdapter (context: Context) :ListAdapter<FilterItem, ItemsAdapter.Item
 
    // private val selectedItems: MutableList<String>?=null
     val selectedItems = mutableListOf<String>()
-    var tracker: SelectionTracker<Long>? =null
+
     init {
         setHasStableIds(true)
     }
@@ -43,7 +43,7 @@ class ItemsAdapter (context: Context) :ListAdapter<FilterItem, ItemsAdapter.Item
            Log.d(TAG,"items list is null")
         }*/
          if (selectedItems.size >0){
-            Log.d(TAG,"items list is totally null null........")
+            Log.d(TAG,"items list is passing${selectedItems.size}........")
         }
         return selectedItems
 
@@ -66,14 +66,18 @@ class ItemsAdapter (context: Context) :ListAdapter<FilterItem, ItemsAdapter.Item
     override fun onBindViewHolder(holder: ItemsViewHolder, position: Int) {
         var item=getItem(position)
         if (selectedDrawable != null && topLeftCornerRadius !=null) {
-           // tracker?.let {
                holder.itemView.setOnClickListener {
                    it.isActivated=!it.isActivated
-                   selectedItems.add(item.name)
+                   if (selectedItems.contains(item.name)){
+                       selectedItems.remove(item.name)
+                   }else{
+                       selectedItems.add(item.name)
+                   }
+
                }
                 holder.bind (item, selectedTint, topLeftCornerRadius, selectedDrawable)
 
-           // } it.isSelected(position.toLong())
+
 
         }
     }
