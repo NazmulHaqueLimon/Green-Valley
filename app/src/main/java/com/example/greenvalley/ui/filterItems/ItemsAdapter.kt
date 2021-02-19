@@ -88,24 +88,17 @@ class ItemsAdapter (context: Context) :ListAdapter<FilterItem, ItemsAdapter.Item
 
    inner class ItemsViewHolder (
             private val binding: ItemChipBinding
-    ):RecyclerView.ViewHolder(binding.root),View.OnClickListener{
+    ):RecyclerView.ViewHolder(binding.root){
 
 
         fun bind(
                 item: FilterItem,
-            //isActivated:Boolean=false,
                 @ColorInt selectedTint: Int,
                 @Px selectedTopLeftCornerRadius: Int,
-                selectedDrawable: Drawable,
-                selected: Boolean=false)
-        {
-            //itemView.isActivated =selected
-            //selectedItems?.add(item.name)
+                selectedDrawable: Drawable, ) {
 
 
             binding.run {
-
-                //if (root.)
 
                 this.filterItems=item
 
@@ -125,11 +118,6 @@ class ItemsAdapter (context: Context) :ListAdapter<FilterItem, ItemsAdapter.Item
                 executePendingBindings()
             }
         }
-
-       override fun onClick(v: View?) {
-           val element =getItem(layoutPosition)
-           selectedItems.add(element.name)
-       }
 
    }
 

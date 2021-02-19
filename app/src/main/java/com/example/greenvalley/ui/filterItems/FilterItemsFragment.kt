@@ -11,6 +11,7 @@ import androidx.core.view.forEach
 import androidx.dynamicanimation.animation.SpringAnimation
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearSmoothScroller
 import androidx.recyclerview.widget.RecyclerView
@@ -19,6 +20,7 @@ import com.example.greenvalley.databinding.FragmentFilterItemsBinding
 import com.example.greenvalley.util.spring
 import com.example.greenvalley.viewModels.ItemListViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class FilterItemsFragment : Fragment() {
@@ -28,7 +30,7 @@ class FilterItemsFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val binding=FragmentFilterItemsBinding.inflate(inflater,container,false)
         context?:return binding.root
 
@@ -42,6 +44,11 @@ class FilterItemsFragment : Fragment() {
             )
         }
         binding.fab.setOnClickListener{
+            viewLifecycleOwner.lifecycleScope.launch {
+                adapter.getSelectedItems().let {
+                    viewModel.setFilters(it)
+                }
+            }
             adapter.getSelectedItems().let {
                 viewModel.setFilters(it)
             }

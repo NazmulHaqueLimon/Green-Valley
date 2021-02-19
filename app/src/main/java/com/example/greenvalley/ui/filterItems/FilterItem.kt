@@ -1,8 +1,10 @@
 package com.example.greenvalley.ui.filterItems
 
 
+
 import androidx.recyclerview.widget.DiffUtil
 import com.example.greenvalley.R
+import com.example.greenvalley.ui.listItems.DisplayItem
 
 data class FilterItem(
         val name:String,
@@ -12,6 +14,7 @@ data class FilterItem(
 object ItemDiff : DiffUtil.ItemCallback<FilterItem>() {
     override fun areItemsTheSame(oldItem: FilterItem, newItem: FilterItem) = oldItem.name == newItem.name
     override fun areContentsTheSame(oldItem: FilterItem, newItem: FilterItem) = oldItem == newItem
+
 }
 val filterItems = listOf(
         FilterItem("Flower Plants", 58, R.drawable.coconut_tree),
@@ -21,7 +24,7 @@ val filterItems = listOf(
         FilterItem("Tools", 423, R.drawable.coconut_tree),
         FilterItem("Soil", 92, R.drawable.coconut_tree),
         FilterItem("Fertilizers", 165, R.drawable.alovera),
-        FilterItem("Indoor Plants", 164, R.drawable.coconut_tree),
+        FilterItem("Indoor", 164, R.drawable.coconut_tree),
         FilterItem("Decoration", 326, R.drawable.alovera),
         FilterItem("Cactus", 305, R.drawable.alovera),
         FilterItem("Water Savior", 305, R.drawable.alovera),

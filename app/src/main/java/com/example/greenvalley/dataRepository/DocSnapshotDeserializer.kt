@@ -1,5 +1,8 @@
 package com.example.greenvalley.dataRepository
 
+
+import android.content.ContentValues.TAG
+import android.util.Log
 import com.example.greenvalley.ui.listItems.Item
 import com.google.firebase.firestore.DocumentSnapshot
 
@@ -11,6 +14,8 @@ internal class DocSnapshotDeserializer :DocumentSnapshotDeserializer<Item> {
         //val id =input.id
         val name =input.getString("name")?:
             throw Deserializer.DeserializerException("name not found")
+
+        Log.d(TAG,".........deserialize......")
 
         //return Item(id,name)
         return Item(name)

@@ -1,5 +1,7 @@
  package com.example.greenvalley.dataRepository
 
+import android.content.ContentValues
+import android.util.Log
 import java.lang.Exception
 import java.lang.IllegalArgumentException
 
@@ -12,9 +14,11 @@ import java.lang.IllegalArgumentException
      init {
          if (data == null && exception == null) {
              throw IllegalArgumentException("Both data and exception can't be null")
+             Log.d(ContentValues.TAG,"error in data")
          }
          else if (data != null && exception != null) {
              throw IllegalArgumentException("Both data and exception can't be non-null")
+             Log.d(ContentValues.TAG,"error in data")
          }
      }
  }

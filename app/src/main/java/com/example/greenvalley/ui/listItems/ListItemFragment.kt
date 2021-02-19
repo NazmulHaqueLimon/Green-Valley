@@ -23,10 +23,11 @@ class ListItemFragment : Fragment() {
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         val binding = FragmentListItemBinding.inflate(inflater, container, false)
         context ?: return binding.root
+        //setSupportActionBar()
 
         val adapter = ItemListAdapter()
         binding.itemRecycler.adapter = adapter
@@ -36,8 +37,10 @@ class ListItemFragment : Fragment() {
         val dataObserver =Observer<filteredDisplayItemResults>{
             if (it!=null){
                 if (it.data !=null){
+                    Log.d(TAG,"........adapter getting data.........")
                     adapter.submitList(it.data.reversed())
                     //adapter getting a list of QueryItem<DisplayItem>
+
                 }
                 else if (it.exception != null) {
                     Log.e(TAG, "Error getting data", it.exception)
@@ -45,7 +48,7 @@ class ListItemFragment : Fragment() {
                 }
             }
         }
-        //viewModel.items.observe(viewLifecycleOwner,dataObserver)
+        viewModel.items.observe(viewLifecycleOwner,dataObserver)
 
         setHasOptionsMenu(true)
 

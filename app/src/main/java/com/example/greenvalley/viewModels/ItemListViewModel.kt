@@ -28,14 +28,38 @@ import javax.inject.Inject
 
       fun setFilters(filterItems :List<String>){
           filters.value=filterItems
-          Log.d(TAG,"items list is passing${filterItems.size}")
 
      }
      // Create a LiveData with a String
      val currentName: MutableLiveData<String> by lazy {
          MutableLiveData<String>()
      }
-     val items =filters.switchMap { list->
+     val items:LiveData<filteredDisplayItemResults> =filters.switchMap {
+         loadFilteredItems(it)
+
+     }
+
+     private fun loadFilteredItems(filterItems: List<String>): LiveData<filteredDisplayItemResults> {
+         val result =  MutableLiveData<filteredDisplayItemResults>()
+         viewModelScope.launch {
+             result.value = filterItems.let {list->
+
+                 itemListRepository.getFilteredItems(list).map { result->
+
+                     val converted = result.data?.map {queryItem->
+                         DisplayQueryItem(queryItem)
+                     }
+                     val exception = result.exception
+                     filteredDisplayItemResults(converted,exception)
+
+                 }
+             }.value
+
+         }
+         return result
+
+     }
+     /**val items =filters.switchMap { list->
          liveData(context = viewModelScope.coroutineContext + Dispatchers.IO) {
              emit(itemListRepository.getFilteredItems(list).map { result->
                  val converted = result.data?.map {
@@ -45,10 +69,10 @@ import javax.inject.Inject
                  filteredDisplayItemResults(converted,exception)
              })
          }
-     }
-     //val items : LiveData<filteredDisplayItemResults> =Transformations.switchMap(filters){
-         //loadFilteredItems(it)
-    // }
+     }*/
+
+
+
      companion object {
          private const val FILTERS_SAVED_STATE_KEY = "filters_key"
      }

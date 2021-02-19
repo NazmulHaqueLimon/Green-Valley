@@ -1,5 +1,7 @@
 package com.example.greenvalley.extendedLiveData
 
+import android.content.ContentValues
+import android.util.Log
 import androidx.lifecycle.LiveData
 import com.example.greenvalley.dataRepository.DataOrException
 import com.google.firebase.firestore.*
@@ -25,7 +27,9 @@ class FirestoreQueryLiveData(
     }
     override fun onEvent(value: QuerySnapshot?, error: FirebaseFirestoreException?) {
         val documents =value?.documents
-        postValue(documents?.let { DocumentSnapShotsOrException(it, error) })
+        postValue(documents?.let {
+            Log.d(ContentValues.TAG,"value posted from firestore......onEnent Method called.....")
+            DocumentSnapShotsOrException(it, error) })
 
 
     }

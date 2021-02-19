@@ -33,7 +33,7 @@ class ItemListAdapter : ListAdapter<QueryItem<DisplayItem>, RecyclerView.ViewHol
     ) : RecyclerView.ViewHolder(binding.root) {
         init {
             binding.setClickListener {
-                binding.items?.let { item ->
+                binding.item?.let { item ->
                     //navigateToPlant(item, it)
                 }
             }
@@ -52,7 +52,7 @@ class ItemListAdapter : ListAdapter<QueryItem<DisplayItem>, RecyclerView.ViewHol
 
         fun bind(qItem: DisplayItem) {
             binding.apply {
-                items =qItem
+                item =qItem
                 executePendingBindings()
             }
         }

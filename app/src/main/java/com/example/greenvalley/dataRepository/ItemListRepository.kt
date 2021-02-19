@@ -8,6 +8,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import com.example.greenvalley.extendedLiveData.FirestoreQueryLiveData
 import com.example.greenvalley.ui.listItems.Item
+import com.google.firebase.firestore.BuildConfig
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -17,7 +18,9 @@ import javax.inject.Singleton
 @Singleton
 class ItemListRepository @Inject constructor()  {
 
+    private val useEmulators :Boolean =BuildConfig.DEBUG
     private val firestoreInstance =FirebaseFirestore.getInstance()
+
     private val documentRef =firestoreInstance.collection("products")
 
     private val deserializer =DocSnapshotDeserializer()
@@ -25,7 +28,9 @@ class ItemListRepository @Inject constructor()  {
     suspend fun getFilteredItems(list: List<String>): LiveData<filteredItemsQueryResultOrException> {
         return withContext(Dispatchers.IO){
             Log.d(TAG,"items list is passing.through repository")
-            val query =documentRef.whereArrayContainsAny("category",list)
+           // val query =documentRef.whereArrayContains("category","Indoor")
+            val query =documentRef.whereArrayContainsAny("category",list )
+            //val queryLiveData =FirestoreQueryLiveData(query)
             val queryLiveData =FirestoreQueryLiveData(query)
             //returns dataOrException of list of Documents
             Transformations.map(queryLiveData,DeserializeDocSnapshots(deserializer))
@@ -48,11 +53,6 @@ interface QueryItem<T> {
     val id: String
 }
 
-/**
- * interface BaseRepository {
-fun getFilteredItems(list: List<String>):LiveData<filteredItemsQueryResultOrException>
-
-}*/
 //extending the queryItem interface
 data class PlantQueryItem(
         private val plantItem : Item,
